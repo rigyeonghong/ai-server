@@ -13,12 +13,12 @@ browser = webdriver.Chrome(options=options, executable_path=DRIVER_PATH)
 네이버 쇼핑 모바일, 웹, 카탈로그 크롤링 예시 url
 '''
 # 모바일
-# url = "https://m.smartstore.naver.com/yongsan/products/7762895541?NaPm=ct%3Dlcefumtc%7Cci%3D4098bec1f843d7e3e0eaeebb2dbccf4d57ad9585%7Ctr%3Dslbrc%7Csn%3D958071%7Chk%3Db15086f2940e945b34c9023fc3eea1adaf9ea118"
+url = "https://m.smartstore.naver.com/yongsan/products/7762895541?NaPm=ct%3Dlcefumtc%7Cci%3D4098bec1f843d7e3e0eaeebb2dbccf4d57ad9585%7Ctr%3Dslbrc%7Csn%3D958071%7Chk%3Db15086f2940e945b34c9023fc3eea1adaf9ea118"
 # url = "https://m.shopping.naver.com/play/play/stores/1000020568/products/7175898155?NaPm=ct%3Dlcehowm8%7Cci%3Df7077022204e34c7fd7b8a2fba59d157ef31ea31%7Ctr%3Dslsbrc%7Csn%3D205878%7Chk%3Dcce2261dd8c8590cc5e324f5022cbb7e773907c8#REVIEW"
 # 웹
 # url = "https://smartstore.naver.com/smartinter/products/7574962786?NaPm=ct%3Dlcekxb7c%7Cci%3D4ac9502013df0ea687116a5f07aaad6c4969029d%7Ctr%3Dslsbrc%7Csn%3D6781927%7Chk%3Dccd5fa6ae7f60812834f278e96715e2f5c1c8a28"
 # 모바일 카탈로그
-url = "https://msearch.shopping.naver.com/catalog/34161823619?NaPm=ct%3Dlcehnyo0%7Cci%3De4dcdec1a4ab478017f40e172e84e81c301fd39c%7Ctr%3Dsls%7Csn%3D95694%7Chk%3D01970cd757f67828342377cf9e6802d7a70d3630&cat_id=50002932&frm=NVSCDIG&purchaseConditionSequence=20166681&query=%ED%95%9C%EC%84%B1%20%ED%82%A4%EB%B3%B4%EB%93%9C&sort=LOW_PRICE"
+# url = "https://msearch.shopping.naver.com/catalog/34161823619?NaPm=ct%3Dlcehnyo0%7Cci%3De4dcdec1a4ab478017f40e172e84e81c301fd39c%7Ctr%3Dsls%7Csn%3D95694%7Chk%3D01970cd757f67828342377cf9e6802d7a70d3630&cat_id=50002932&frm=NVSCDIG&purchaseConditionSequence=20166681&query=%ED%95%9C%EC%84%B1%20%ED%82%A4%EB%B3%B4%EB%93%9C&sort=LOW_PRICE"
 
 browser.get(url)
 
