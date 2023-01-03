@@ -9,7 +9,8 @@ mobile_emulation = { "deviceName": "iPhone X" }
 options.add_experimental_option("mobileEmulation", mobile_emulation)
 browser = webdriver.Chrome(options=options, executable_path=DRIVER_PATH)
 
-url = "https://m.11st.co.kr/products/m/4700403909?prdNo=4700403909"
+# url = "https://m.11st.co.kr/products/m/4700403909?prdNo=4700403909"
+url = "https://m.11st.co.kr/products/m/2218563579"
 # url = "https://m.11st.co.kr/products/ma/3690859819?prdNo=3690859819" # 11번가 내부 아마존 제품
 browser.get(url)
 

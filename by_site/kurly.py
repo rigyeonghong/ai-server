@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+import shortuuid
 
 DRIVER_PATH = "/chromedriver"
 options = Options()
@@ -19,7 +20,8 @@ price = browser.find_element(By.XPATH, '//*[@id="__next"]/div[3]/div[1]/div[2]/d
 if price == "원":
     price = browser.find_element(By.XPATH, '//*[@id="__next"]/div[3]/div[1]/div[2]/div[2]/span[1]').text
 img = browser.find_element(By.XPATH, '//*[@id="__next"]/div[3]/div[1]/div[1]/img') # 이미지 스크린샷
-img.screenshot("./kurly.png")
+img_id = shortuuid.uuid()
+img.screenshot(f"../capture/kurly.{img_id}.png")
 
 print("상품 이름 : ", name)
 print("가격 : ", price)
