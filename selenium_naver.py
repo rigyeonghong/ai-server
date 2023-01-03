@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
-DRIVER_PATH = "chromedriver.exe"
+DRIVER_PATH = '/chromedriver'
 options = Options()
 options.headless = True
 mobile_emulation = { "deviceName": "iPhone X" }
@@ -19,6 +19,7 @@ browser = webdriver.Chrome(options=options, executable_path=DRIVER_PATH)
 # url = "https://smartstore.naver.com/smartinter/products/7574962786?NaPm=ct%3Dlcekxb7c%7Cci%3D4ac9502013df0ea687116a5f07aaad6c4969029d%7Ctr%3Dslsbrc%7Csn%3D6781927%7Chk%3Dccd5fa6ae7f60812834f278e96715e2f5c1c8a28"
 # 모바일 카탈로그
 url = "https://msearch.shopping.naver.com/catalog/34161823619?NaPm=ct%3Dlcehnyo0%7Cci%3De4dcdec1a4ab478017f40e172e84e81c301fd39c%7Ctr%3Dsls%7Csn%3D95694%7Chk%3D01970cd757f67828342377cf9e6802d7a70d3630&cat_id=50002932&frm=NVSCDIG&purchaseConditionSequence=20166681&query=%ED%95%9C%EC%84%B1%20%ED%82%A4%EB%B3%B4%EB%93%9C&sort=LOW_PRICE"
+
 browser.get(url)
 
 try: 
@@ -33,12 +34,14 @@ except:
     try: price = browser.find_element(By.XPATH, '//*[@id="content"]/div[2]/div[2]/div[1]/div[3]/div[2]/div/div[2]/div/span[2]').text
     except: price = browser.find_element(By.XPATH, '//*[@id="__next"]/div/div[2]/div[1]/div/div[1]/div[2]/span[1]/em').text
                                             
+
 try:
     img = browser.find_element(By.XPATH, '//*[@id="content"]/div[1]/div[1]/div/div/div/div[1]/div/div/div[1]/div/img').get_attribute("src")
 except:
     try: img = browser.find_element(By.XPATH, '//*[@id="content"]/div[2]/div[1]/div/div/div[1]/div/div/div[1]/div/img').get_attribute("src")
     except: img = browser.find_element(By.XPATH, '//*[@id="__next"]/div/div[2]/div[1]/div/div[2]/img').get_attribute("src")
 
-print("[상품] ", name)
-print("[가격] ", price)
-print("[이미지] ", img)
+print("상품 이름 : ", name)
+print("가격 : ", price)
+print("이미지 : ", img)
+browser.quit()
