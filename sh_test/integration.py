@@ -29,9 +29,9 @@ driver = webdriver.Chrome(options=options, executable_path=DRIVER_PATH)
 
 # URL (쿠팡, 네이버, 무신사 순)
 # url = 'https://m.coupang.com/vm/products/6552462584?itemId=14634004658&vendorItemId=81875544125' # 쿠팡
-url = 'https://m.coupang.com/vm/products/6335468410?vendorItemId=80524121180&sourceType=HOME_PERSONALIZED_ADS&searchId=feed-8e73a28dd2b1491a8291b0372d0e3ec4-personalized_ads&clickEventId=4b164f80-c05c-4f34-9181-10972e2c1914&isAddedCart=' # 쿠팡 2
+# url = 'https://m.coupang.com/vm/products/6335468410?vendorItemId=80524121180&sourceType=HOME_PERSONALIZED_ADS&searchId=feed-8e73a28dd2b1491a8291b0372d0e3ec4-personalized_ads&clickEventId=4b164f80-c05c-4f34-9181-10972e2c1914&isAddedCart=' # 쿠팡 2
 # url = "https://m.shopping.naver.com/kids/stores/1000016176/products/4847841465?NaPm=ct%3Dlcfs8ykw%7Cci%3D6ae6545058bf0a5b6906fdb0e42605ec5ab66f78%7Ctr%3Dbrc%7Csn%3D203038%7Chk%3Dafd41c17626461775eeac008bf5481009bea4150" # 네이버
-# url = "https://www.musinsa.com/app/goods/2926375?loc=goods_rank" # 무신사
+url = "https://www.musinsa.com/app/goods/2926375?loc=goods_rank" # 무신사
 
 driver.get(url)
 print(driver.get_window_size())
@@ -68,55 +68,55 @@ if (url.find("coupang.com") != -1):
 
 
 ## 2. 텍스트 스크래핑 (meta 활용) ##
-title_scrap = False
+# title_scrap = False
 
-try:
-    meta_title = driver.find_element(By.XPATH, "//meta[@property='og:title']")
+# try:
+#     meta_title = driver.find_element(By.XPATH, "//meta[@property='og:title']")
     
-    if (meta_title != 0):
-        title = meta_title
-        print("제목 :", title.get_attribute("content"))
-        title_scrap = True
-except:
-    pass
+#     if (meta_title != 0):
+#         title = meta_title
+#         print("제목 :", title.get_attribute("content"))
+#         title_scrap = True
+# except:
+#     pass
 
 
-# 2-2. 텍스트 스크래핑 (클래스 활용)
-if title_scrap == False:
-    try:
-        class_title = driver.find_elements(By.XPATH, "//*[contains(@class, 'title')]")
+# # 2-2. 텍스트 스크래핑 (클래스 활용)
+# if title_scrap == False:
+#     try:
+#         class_title = driver.find_elements(By.XPATH, "//*[contains(@class, 'title')]")
         
-        for t in class_title:
-            if (t.text != "" and t.location['y'] <= window_height*1):
-                title = t.text
-                print("제목 :", title)
-                title_scrap = True
-                break
+#         for t in class_title:
+#             if (t.text != "" and t.location['y'] <= window_height*1):
+#                 title = t.text
+#                 print("제목 :", title)
+#                 title_scrap = True
+#                 break
 
-    except:
-        pass
+#     except:
+#         pass
     
 
-## 3. 가격 스크래핑 (meta 활용) ##
+# 3. 가격 스크래핑 (meta 활용) ##
 # 1) window height 체크
 # 2) 텍스트 크기 체크해서
-# price_scrap = False
+price_scrap = False
 
 
-# wons = driver.find_elements(By.XPATH, '//*[contains(@class, "price")]')
-# for w in wons:
-#     if (w.location['y'] <= window_height) and ("원" in w.text) and (w.text != ""):
-#         print("가격: ", w.text)
-#         price_scrap = True
+wons = driver.find_elements(By.XPATH, '//*[contains(@class, "price")]')
+for w in wons:
+    if (w.location['y'] <= window_height) and ("원" in w.text) and (w.text != ""):
+        print("가격: ", w.text)
+        price_scrap = True
 
-# if (price_scrap == False) :
-#     wons = driver.find_elements(By.XPATH, '//*[contains(@div, "원")]')
-#     for w in wons:
-#         if (w.location['y'] <= window_height) and ("원" in w.text) and (w.text != ""):
-#             print("가격: ", w.text)
+if (price_scrap == False) :
+    wons = driver.find_elements(By.XPATH, '//*[contains(@div, "원")]')
+    for w in wons:
+        if (w.location['y'] <= window_height) and ("원" in w.text) and (w.text != ""):
+            print("가격: ", w.text)
 
 
-# won = driver.find_element(By.XPATH, f'//*[contains(text(), "원")]/preceding-sibling::span').text
+won = driver.find_element(By.XPATH, f'//*[contains(text(), "원")]/preceding-sibling::span').text
 
         
 
