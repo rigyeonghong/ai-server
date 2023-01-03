@@ -34,3 +34,5 @@ def s3_img_upload(s3,f):
     
 def s3_get_img_url(filename):
     return f"https://{BUCKET_NAME}.s3.ap-northeast-2.amazonaws.com/{filename}"
+
+default_img = f"https://{BUCKET_NAME}.s3.ap-northeast-2.amazonaws.com/default_img.jpeg"
