@@ -11,7 +11,7 @@ def hello_world():
 @app.route('/webscrap', methods=['POST'])
 def webscrap():
     data = request.get_json()
-    url_receive = data['url']
+    url_receive = data['url'][0]
     # [todo] 예외처리 필요
     return web_scrap(url_receive)
 
