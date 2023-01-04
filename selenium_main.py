@@ -26,15 +26,12 @@ browser = webdriver.Chrome(options = options, executable_path=DRIVER_PATH)
 # url = "https://m.coupang.com/vm/products/6335468410?vendorItemId=80524121180&sourceType=HOME_PERSONALIZED_ADS&searchId=feed-8e73a28dd2b1491a8291b0372d0e3ec4-personalized_ads&clickEventId=4b164f80-c05c-4f34-9181-10972e2c1914&isAddedCart="
 
 def web_scrap(url):
-    try:
-        browser.get(url)
+    browser.get(url)
 
-        title = get_title(browser, url)
-        price = get_price(browser)
-        img = get_img(browser, url)
+    title = get_title(browser, url)
+    price = get_price(browser)
+    img = get_img(browser, url)
 
-        browser.quit()
-    except Exception as e:
-        print(e)
+    browser.quit()
     
     return jsonify({'url': url, 'title': title, 'price': price, 'img': img})
