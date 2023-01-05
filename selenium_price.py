@@ -12,7 +12,14 @@ def get_price(browser):
         if price.text == "원":
             price = browser.find_element(By.XPATH, '//*[contains(text(), "원") and not(contains(text(), "배송")) and not(contains(text(), "천원"))]//preceding::span[1]') # 네이버
 
-        new_price = int(re.sub(r"[^0-9]", "", price.text))
-    except:
+        price = price.text
+        if price.find("~") != -1:
+            idx = price.index("~")
+            price = price[idx+1:]
+        new_price = int(re.sub(r"[^0-9]", "", price))
+    
+    except Exception as e: 
+        print(e)
         new_price = 0
+    
     return(new_price)
