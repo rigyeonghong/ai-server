@@ -22,6 +22,8 @@ browser = webdriver.Chrome(options = options, executable_path=DRIVER_PATH)
 
 
 def web_scrap(url): 
+    if (url.find("musinsaapp") != -1): # 무신사 앱링크면
+        url += "?_imcp=1"
     browser.get(url)
     if (url.find("11st.co.kr") != -1): # 11번가
         return elevenst_get_info(browser)

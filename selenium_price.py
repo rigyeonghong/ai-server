@@ -4,7 +4,6 @@ import re
 def get_price(browser):
     try:
         prices = browser.find_elements(By.XPATH, '//*[contains(text(), "원") and not(contains(text(), "배송")) and not(contains(text(), "천원"))]') # 네이버
-
         for price in prices:
             if 100 < price.location['y'] <= 980:
                 break
@@ -13,6 +12,12 @@ def get_price(browser):
             price = browser.find_element(By.XPATH, '//*[contains(text(), "원") and not(contains(text(), "배송")) and not(contains(text(), "천원"))]//preceding::span[1]') # 네이버
 
         price = price.text
+        if price.find(":") != -1:
+            p_list = list(price.split())
+            for p in p_list:
+                if p.find(",") != -1:
+                    price = p
+        
         if price.find("~") != -1:
             idx = price.index("~")
             price = price[idx+1:]

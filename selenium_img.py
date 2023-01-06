@@ -12,15 +12,21 @@ def get_img(browser, url):
         else:
             imgs = browser.find_elements(By.CSS_SELECTOR, 'img')
 
-        for i in imgs:
-            img = i.get_attribute("src")
-            if 136 < img.__sizeof__()<= 400:
-                break 
+        if (url.find("musinsaapp") != -1): # 무신사 앱링크면
+            for i in imgs:
+                img = i.get_attribute("src")
+                if 157 < img.__sizeof__()<= 400:
+                    break 
+        else:
+            for i in imgs:
+                img = i.get_attribute("src")
+                if 136 < img.__sizeof__()<= 400:
+                    break 
 
         #[todo] Img_url에 http,s 가 없는 경우 
 
         # 이미지 스크래핑 안되는 url은 캡처 후 s3에 올려서 이미지 url 생성
-        if "data:image/svg+xml" in img:
+        if "data:image" in img:
             img = browser.find_element(By.XPATH, '//*[@id="__next"]/div[3]/div[1]/div[1]/img')
             img_id = shortuuid.uuid()
             img.screenshot(f"./capture/kurly.{img_id}.png")
