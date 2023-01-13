@@ -1,12 +1,6 @@
 import boto3
 from botocore.client import Config
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-ACCESS_KEY_ID = os.environ.get("ACCESS_KEY_ID")
-ACCESS_SECRET_KEY = os.environ.get("ACCESS_SECRET_KEY")
-BUCKET_NAME = os.environ.get("BUCKET_NAME")
+from config import ACCESS_KEY_ID, ACCESS_SECRET_KEY, BUCKET_NAME
 
 def s3_connection():
     try:
