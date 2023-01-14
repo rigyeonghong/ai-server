@@ -12,6 +12,7 @@ def hello_world():
 def webscrap():
     data = request.get_json()
     url_receive = data['url'][0]
+    print("url", url_receive)
     # [todo] 예외처리 필요
     return web_scrap(url_receive)
 
