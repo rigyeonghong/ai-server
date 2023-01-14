@@ -6,6 +6,9 @@ from selenium_title import get_title
 from selenium_img import get_img
 from flask import jsonify
 from elevenst import elevenst_get_info
+# from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.common.action_chains import ActionChains
+# import pyautogui
 
 DRIVER_PATH = "/app/chrome/chromedriver"
 options = Options()
@@ -20,10 +23,33 @@ options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
 mobile_emulation = { "deviceName": "iPhone X" }
 options.add_experimental_option("mobileEmulation", mobile_emulation)
-browser = webdriver.Chrome(options = options, executable_path=DRIVER_PATH)
 
 
 def web_scrap(url): 
+    browser = webdriver.Chrome(options = options, executable_path=DRIVER_PATH)
+    # if (url.find("link.coupang") != -1): # 쿠팡 앱링크면
+    #     # os.environ['DISPLAY'] = ':0'
+    #     # os.environ['XAUTHORITY']='/run/user/1000/gdm/Xauthority'
+    #     # caps = DesiredCapabilities
+    #     # # caps['loggingPrefs'] = {'perfomance': 'ALL'}
+    #     # # browser = webdriver.Chrome(desired_capabilities=caps)
+    #     # browser = webdriver.Chrome(options = options, executable_path=DRIVER_PATH)
+    #     # browser_log = browser.get_log('performance')
+    #     # print(browser_log)
+    #     # return;
+        
+    #     # print(ActionChains(browser).context_click().perform().location())
+    #     print(pyautogui.size())
+    #     print(pyautogui.position())
+    #     print("================끝==================")
+    #     return;
+        
+    #     res = browser.get(url, headers=headers)
+    #     print(res.text)
+        
+            
+        # return jsonify({'url': url, 'title': title, 'price': price, 'img': img})
+    
     if (url.find("musinsaapp") != -1): # 무신사 앱링크면
         url += "?_imcp=1"
     browser.get(url)
@@ -31,7 +57,10 @@ def web_scrap(url):
         return elevenst_get_info(browser)
     else: 
         title = get_title(browser, url)
+        print("title", title)
         price = get_price(browser)
+        print("price", price)
         img = get_img(browser, url)
+        print("img", img)
 
     return jsonify({'url': url, 'title': title, 'price': price, 'img': img})

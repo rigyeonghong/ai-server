@@ -37,5 +37,8 @@ def elevenst_get_info(browser):
                 break
     except:
         img = default_img
-    
+        
+    print("[title_11st]", title)
+    print("[price_11st]", price)
+    print("[img_11st]", img)
     return jsonify({'url': url, 'title': title, 'price': new_price, 'img': img})

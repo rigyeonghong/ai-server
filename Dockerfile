@@ -16,7 +16,11 @@ RUN apt-get -y update
 
 RUN apt install wget
 
-RUN apt install unzip  
+RUN apt install unzip 
+
+RUN pip3 install gunicorn
+
+RUN pip3 install gevent
 
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
@@ -30,4 +34,4 @@ RUN unzip /tmp/chromedriver.zip chromedriver -d /app/chrome
 
 COPY . /app
 
-CMD ["python3", "app.py"]
+CMD ["gunicorn", "app:app", "-b", "0.0.0.0:5000", "-w", "4", "--timeout=10", "-k", "gevent"]
