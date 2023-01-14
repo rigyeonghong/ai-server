@@ -34,4 +34,4 @@ RUN unzip /tmp/chromedriver.zip chromedriver -d /app/chrome
 
 COPY . /app
 
-CMD ["gunicorn", "app:app", "-b", "0.0.0.0:5000", "-w", "4", "--timeout=10", "-k", "gevent"]
+CMD ["gunicorn", "app:app", "-b", "0.0.0.0:5000", "-w", "2", "--timeout=360", "-k", "gevent"]
