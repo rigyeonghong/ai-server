@@ -63,4 +63,5 @@ def web_scrap(url):
         img = get_img(browser, url)
         print("img", img)
 
+    print("===Finish Scraping===")
     return jsonify({'url': url, 'title': title, 'price': price, 'img': img})

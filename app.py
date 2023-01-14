@@ -14,6 +14,7 @@ def webscrap():
     url_receive = data['url'][0]
     print("url", url_receive)
     # [todo] 예외처리 필요
+    print("===Start Scraping===")
     return web_scrap(url_receive)
 
 if __name__ == '__main__':
