@@ -23,18 +23,22 @@ options.add_experimental_option("mobileEmulation", mobile_emulation)
 browser = webdriver.Chrome(options = options, executable_path=DRIVER_PATH)
 
 def web_scrap(url): 
-    if (url.find("musinsaapp") != -1): # 무신사 앱링크면
-        url += "?_imcp=1"
-    browser.get(url)
-    if (url.find("11st.co.kr") != -1): # 11번가
-        return elevenst_get_info(browser)
-    else: 
-        title = get_title(browser, url)
-        print("title", title)
-        price = get_price(browser)
-        print("price", price)
-        img = get_img(browser, url)
-        print("img", img)
+    try :
+        if (url.find("musinsaapp") != -1): # 무신사 앱링크면
+            url += "?_imcp=1"
+        browser.get(url)
+        if (url.find("11st.co.kr") != -1): # 11번가
+            return elevenst_get_info(browser)
+        else: 
+            title = get_title(browser, url)
+            print("title", title)
+            price = get_price(browser)
+            print("price", price)
+            img = get_img(browser, url)
+            print("img", img)
 
-    print("===Finish Scraping===")
-    return jsonify({'url': url, 'title': title, 'price': price, 'img': img})
+        print("===Finish Scraping===")
+        return jsonify({'url': url, 'title': title, 'price': price, 'img': img})
+    except :
+        print("===SCRAP ERROR===")
+        return jsonify({'url': url, 'title': '사이트로 이동하기', 'price': '-', 'img': 'https://sendwish-img-bucket.s3.ap-northeast-2.amazonaws.com/collection_default.png'})
