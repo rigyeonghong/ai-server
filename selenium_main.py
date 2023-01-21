@@ -22,6 +22,14 @@ options.add_argument('--disable-dev-shm-usage')
 mobile_emulation = { "deviceName": "iPhone X" }
 options.add_experimental_option("mobileEmulation", mobile_emulation)
 
+class Product:
+    def __init__(self):
+        self.url = ""
+        self.title = ""
+        self.price = 0
+        self.img = ""
+        self.category = ""
+
 def web_scrap(url): 
     try :
         browser = webdriver.Chrome(options = options, executable_path=DRIVER_PATH)
@@ -38,7 +46,22 @@ def web_scrap(url):
             img = get_img(browser, url)
             print("img", img)
         print("===Finish Scraping===")
-        return jsonify({'url': url, 'title': title, 'price': price, 'img': img})
+        
+        print("===Finish Scraping===")
+        product = Product()
+        product.url = url
+        product.title = title
+        product.price = price
+        product.img = img
+        return product
+        # return jsonify({'url': url, 'title': title, 'price': price, 'img': img})
     except :
         print("===SCRAP ERROR===")
-        return jsonify({'url': url, 'title': '사이트로 이동하기', 'price': '-', 'img': 'https://sendwish-img-bucket.s3.ap-northeast-2.amazonaws.com/collection_default.png'})
+        product = Product()
+        product.url = url
+        product.title = '사이트로 이동하기'
+        product.price = '-'
+        product.img = 'https://sendwish-img-bucket.s3.ap-northeast-2.amazonaws.com/collection_default.png'
+        return product
+        
+        # return jsonify({'url': url, 'title': '사이트로 이동하기', 'price': '-', 'img': 'https://sendwish-img-bucket.s3.ap-northeast-2.amazonaws.com/collection_default.png'})

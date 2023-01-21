@@ -1,6 +1,8 @@
+import json
 from flask import Flask, request
 from selenium_main import web_scrap
 from machine_learning import categorization
+from flask import jsonify
 
 app = Flask(__name__)
 
@@ -10,16 +12,40 @@ def hello_world():
     return 'Hello sendwish web scrapper!'
 
 @app.route('/webscrap', methods=['POST'])
+# def webscrap():
+#     data = request.get_json()
+#     url_receive = data['url'][0]
+#     print("url", url_receive)
+#     # [todo] 예외처리 필요
+#     print("===Start Scraping===")
+#     result = web_scrap(url_receive)
+#     print("===Start categorization===")
+    
+#     category = categorization(result(img))
+#     result.append({'category' : category})
+#     return result
+
 def webscrap():
     data = request.get_json()
     url_receive = data['url'][0]
     print("url", url_receive)
     # [todo] 예외처리 필요
     print("===Start Scraping===")
-    result = web_scrap(url_receive)
+    product = web_scrap(url_receive)
     print("===Start categorization===")
-    category = categorization(result['img'])
-    result['category'] = category
+    print("===Product :", product)
+    print("===Product.img :", product.img)
+    
+    category = categorization(product.img)
+    product.category = category
+    
+    url = product.url
+    title = product.title
+    price = product.price
+    img = product.img
+    category = product.category
+    
+    result = jsonify({'url': url, 'title': title, 'price': price, 'img': img, 'category' : category})
     return result
 
 if __name__ == '__main__':
