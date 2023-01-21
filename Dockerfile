@@ -22,6 +22,8 @@ RUN pip3 install gunicorn
 
 RUN pip3 install gevent
 
+RUN pip3 install tensorflow
+
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
 RUN apt -y install ./google-chrome-stable_current_amd64.deb
