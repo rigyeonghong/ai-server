@@ -8,6 +8,7 @@ from flask import jsonify
 from elevenst import elevenst_get_info
 
 DRIVER_PATH = "/app/chrome/chromedriver"
+# DRIVER_PATH = "/chromedriver"
 options = Options()
 options = webdriver.ChromeOptions()
 options.add_argument("--headless")
@@ -20,9 +21,9 @@ options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
 mobile_emulation = { "deviceName": "iPhone X" }
 options.add_experimental_option("mobileEmulation", mobile_emulation)
-browser = webdriver.Chrome(options = options, executable_path=DRIVER_PATH)
 
-def web_scrap(url): 
+def web_scrap(url):     
+    browser = webdriver.Chrome(options = options, executable_path=DRIVER_PATH)
     if (url.find("musinsaapp") != -1): # 무신사 앱링크면
         url += "?_imcp=1"
     browser.get(url)
