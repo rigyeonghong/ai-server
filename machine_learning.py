@@ -10,7 +10,7 @@ def categorization(img_url):
     np.set_printoptions(suppress=True)
 
     # Load the model
-    model = load_model('keras_Model.h5', compile=False)
+    model = load_model('keras_model.h5', compile=False)
 
     # Load the labels
     class_names = open('labels.txt', 'r').readlines()
@@ -21,9 +21,8 @@ def categorization(img_url):
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
     # Replace this with the path to your image
-    urllib.request.urlretrieve('https://image.msscdn.net/images/goods_img/20230106/3009399/3009399_16729895872086_500.jpg', 'a')
-    image = Image.open('a').convert('RGB')
-    # image = Image.open(img_url).convert('RGB')
+    urllib.request.urlretrieve(img_url, 'img')
+    image = Image.open('img').convert('RGB')
 
     #resize the image to a 224x224 with the same strategy as in TM2:
     #resizing the image to be at least 224x224 and then cropping from the center
