@@ -22,7 +22,11 @@ RUN pip3 install gunicorn
 
 RUN pip3 install gevent
 
-RUN pip3 install tensorflow
+RUN pip3 install keras
+
+RUN pip3 install Pillow
+
+RUN pip3 install tensorflow --no-cache-dir
 
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 

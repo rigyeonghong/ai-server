@@ -1,6 +1,9 @@
 from keras.models import load_model
 from PIL import Image, ImageOps #Install pillow instead of PIL
 import numpy as np
+import urllib.request
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
 def categorization(img_url):
     # Disable scientific notation for clarity
@@ -18,7 +21,9 @@ def categorization(img_url):
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
     # Replace this with the path to your image
-    image = Image.open(img_url).convert('RGB')
+    urllib.request.urlretrieve('https://image.msscdn.net/images/goods_img/20230106/3009399/3009399_16729895872086_500.jpg', 'a')
+    image = Image.open('a').convert('RGB')
+    # image = Image.open(img_url).convert('RGB')
 
     #resize the image to a 224x224 with the same strategy as in TM2:
     #resizing the image to be at least 224x224 and then cropping from the center

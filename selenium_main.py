@@ -8,7 +8,6 @@ from flask import jsonify
 from elevenst import elevenst_get_info
 
 DRIVER_PATH = "/app/chrome/chromedriver"
-# DRIVER_PATH = "/chromedriver"
 options = Options()
 options = webdriver.ChromeOptions()
 options.add_argument("--headless")

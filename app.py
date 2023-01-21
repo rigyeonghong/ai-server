@@ -12,28 +12,16 @@ def hello_world():
     return 'Hello sendwish web scrapper!'
 
 @app.route('/webscrap', methods=['POST'])
-# def webscrap():
-#     data = request.get_json()
-#     url_receive = data['url'][0]
-#     print("url", url_receive)
-#     # [todo] 예외처리 필요
-#     print("===Start Scraping===")
-#     result = web_scrap(url_receive)
-#     print("===Start categorization===")
-    
-#     category = categorization(result(img))
-#     result.append({'category' : category})
-#     return result
-
 def webscrap():
     data = request.get_json()
-    url_receive = data['url'][0]
+    # url_receive = data['url'][0]
+    url_receive = data['url']
     print("url", url_receive)
     # [todo] 예외처리 필요
     print("===Start Scraping===")
     product = web_scrap(url_receive)
     print("===Start categorization===")
-    print("===Product :", product)
+    print("===Product :", product.title)
     print("===Product.img :", product.img)
     
     category = categorization(product.img)
