@@ -8,7 +8,6 @@ from flask import jsonify
 from elevenst import elevenst_get_info
 
 DRIVER_PATH = "/app/chrome/chromedriver"
-# DRIVER_PATH = "/chromedriver"
 options = Options()
 options = webdriver.ChromeOptions()
 options.add_argument("--headless")
@@ -54,7 +53,7 @@ def web_scrap(url):
         product.price = price
         product.img = img
         return product
-        # return jsonify({'url': url, 'title': title, 'price': price, 'img': img})
+
     except :
         print("===SCRAP ERROR===")
         product = Product()
@@ -64,4 +63,3 @@ def web_scrap(url):
         product.img = 'https://sendwish-img-bucket.s3.ap-northeast-2.amazonaws.com/collection_default.png'
         return product
         
-        # return jsonify({'url': url, 'title': '사이트로 이동하기', 'price': '-', 'img': 'https://sendwish-img-bucket.s3.ap-northeast-2.amazonaws.com/collection_default.png'})
