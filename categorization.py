@@ -2,6 +2,7 @@ from keras.models import load_model
 from PIL import Image, ImageOps #Install pillow instead of PIL
 import numpy as np
 import urllib.request
+from flask import jsonify
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -10,7 +11,7 @@ def categorization(img_url):
     np.set_printoptions(suppress=True)
 
     # Load the model
-    model = load_model('keras_Model.h5', compile=False)
+    model = load_model('keras_model.h5', compile=False)
 
     # Load the labels
     class_names = open('labels.txt', 'r').readlines()
@@ -21,8 +22,8 @@ def categorization(img_url):
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
     # Replace this with the path to your image
-    urllib.request.urlretrieve(img_url, 'a')
-        image = Image.open('a').convert('RGB')
+    urllib.request.urlretrieve(img_url, 'img')
+    image = Image.open('img').convert('RGB')
     # image = Image.open('/home/ubuntu/scrapping-server/test.png').convert('RGB')
 
     #resize the image to a 224x224 with the same strategy as in TM2:
@@ -47,4 +48,4 @@ def categorization(img_url):
 
     print('Class:', class_name, end='')
     print('Confidence score:', confidence_score)
-    return class_name
+    return jsonify({'img_url': img_url, 'category':class_name.strip()})

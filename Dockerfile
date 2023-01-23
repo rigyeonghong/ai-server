@@ -4,29 +4,15 @@ WORKDIR /app
 
 RUN pip3 install flask
 
-RUN pip3 install selenium
-
-RUN pip3 install webdriver_manager
-
-RUN pip3 install shortuuid
-
-RUN pip3 install boto3
-
-RUN apt-get -y update
-
-RUN apt install wget
-
-RUN apt install unzip 
-
 # RUN pip3 install gunicorn
 
 # RUN pip3 install gevent
 
 RUN pip3 install keras
 
-RUN pip3 install Pillow
-
 RUN pip3 install tensorflow --no-cache-dir
+
+RUN pip3 install Pillow
 
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
